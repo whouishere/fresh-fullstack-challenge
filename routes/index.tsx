@@ -1,7 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { JSX } from "preact";
-import { PersonInfo } from "../components/PersonInfo.tsx";
+import PersonList from "../islands/PersonList.tsx";
 import { Person, handler as getData } from "./api/data.ts";
 
 // handler fetching data returning Person array or null
@@ -27,6 +26,7 @@ export default function Home({ data }: PageProps<Person[] | null>) {
 				<Head>
 					<title>:(</title>
 				</Head>
+
 				<div>
 					<h3>The data couldn't be fetched :(</h3>
 				</div>
@@ -34,20 +34,13 @@ export default function Home({ data }: PageProps<Person[] | null>) {
 		);
 	}
 
-	const renderedData: JSX.Element[] = [];
-	data.forEach((item) => {
-		renderedData.push(<PersonInfo data={item} />);
-	});
-
 	return (
 		<>
 			<Head>
 				<title>Fullstack Challenge</title>
 			</Head>
 			
-			<div>
-				{renderedData}
-			</div>
+			<PersonList data={data} />
 		</>
 	);
 }
