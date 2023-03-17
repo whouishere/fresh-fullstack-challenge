@@ -6,7 +6,7 @@ export interface Person {
 	part:  number
 }
 
-const staticData: Person[] = [
+const db: Person[] = [
 	{
 		first: "Carlos", 
 		last:  "Moura", 
@@ -19,8 +19,10 @@ const staticData: Person[] = [
 	}
 ];
 
+export const addPerson = (data: Person) => db.push(data);
+
 export const handler = (_req: Request, _ctx: HandlerContext<Person[] | null>): Response => {
-	return new Response(JSON.stringify(staticData), {
+	return new Response(JSON.stringify(db), {
 		headers: { "Content-Type": "application/json" }
 	});
 };
