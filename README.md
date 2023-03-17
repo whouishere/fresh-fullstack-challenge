@@ -13,5 +13,3 @@ deno task start
 ```
 
 This will watch the project directory and restart Deno on file changes.
-
-**NOTE:** File watch has [problems](https://github.com/denoland/deno/issues/16699) on Deno 1.31.1/1.31.2.

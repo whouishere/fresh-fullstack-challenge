@@ -2,40 +2,39 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import PersonForm from "../islands/PersonForm.tsx";
 import PersonList from "../islands/PersonList.tsx";
-import { Person, handler as getData, addPerson } from "./api/data.ts";
+import { Person, PersonProps, handler as getData, addPerson } from "./api/data.ts";
+
 
 // handler fetching data returning Person array or null
-export const handler: Handlers<Person[] | null> = {
+export const handler: Handlers<PersonProps> = {
 	async GET(req, ctx) {
-		// query new data from URL parameters and add it to the database
 		const url = new URL(req.url);
+		let err: string | null = null;
+		
+		// query new data from URL parameters and add it to the database
 		if (url.searchParams.toString() !== "") {
 			const first = url.searchParams.get("first");
 			const last = url.searchParams.get("last");
 			const part = parseInt(url.searchParams.get("part")!);
 
-			// there shouldn't be any empty fields
-			if (first !== null || last !== null) {
-				// TODO: add an empty field warning
-				addPerson({first: first!, last: last!, part: part});
-			}
+			err = addPerson({first: first!, last: last!, part: part});
 		}
 
 		// fetch the API data
 		const res = getData(req, ctx);
 
 		if (res.status === 404) {
-			return ctx.render(null);
+			return ctx.render({ data: null, error: err });
 		}
 
 		const fullData: Person[] = await res.json();
-		return ctx.render(fullData);
+		return ctx.render({ data: fullData, error: err });
 	}
 };
 
 // use PageProps arguments to get fetched data
-export default function Home({ data }: PageProps<Person[] | null>) {
-	if (!data) {
+export default function Home(props: PageProps<PersonProps>) {
+	if (!props.data.data) {
 		return (
 			<>
 				<Head>
@@ -56,8 +55,9 @@ export default function Home({ data }: PageProps<Person[] | null>) {
 			</Head>
 
 			<PersonForm />
+			{(props.data.error != null) ? (<div style="color: red;"> {props.data.error} </div>) : ""}
 			
-			<PersonList data={data} />
+			<PersonList data={props.data.data} />
 		</>
 	);
 }

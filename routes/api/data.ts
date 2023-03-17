@@ -6,6 +6,11 @@ export interface Person {
 	part:  number
 }
 
+export type PersonProps = {
+	data: Person[] | null
+	error: string | null
+}
+
 const db: Person[] = [
 	{
 		first: "Carlos", 
@@ -19,9 +24,27 @@ const db: Person[] = [
 	}
 ];
 
-export const addPerson = (data: Person) => db.push(data);
+const DB_ERROR = {
+	EMPTY_FIELD: "Please fill all fields.", 
+	DOUBLE_DATA: "This person is already registered. Please use another name."
+};
 
-export const handler = (_req: Request, _ctx: HandlerContext<Person[] | null>): Response => {
+export const addPerson = (data: Person): string | null => {
+	// check if any data is empty
+	if (data.first === "" || data.last === "" || isNaN(data.part)) {
+		return DB_ERROR.EMPTY_FIELD;
+	}
+
+	// check if the first and last name is doubled
+	if (db.some((element) => (element.first === data.first && element.last === data.last))) {
+		return DB_ERROR.DOUBLE_DATA;
+	}
+
+	db.push(data);
+	return null;
+};
+
+export const handler = (_req: Request, _ctx: HandlerContext<PersonProps>): Response => {
 	return new Response(JSON.stringify(db), {
 		headers: { "Content-Type": "application/json" }
 	});
