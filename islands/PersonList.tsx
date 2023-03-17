@@ -6,7 +6,7 @@ export default function PersonList(props: { data: Person[] }) {
 			<ul>
 				{props.data.map((person) => {
 					// keep the participation percentage, *per-cent*
-					if (person.part < 0) {
+					if (person.part < 0 || isNaN(person.part) || person.part === null) {
 						person.part = 0;
 					} else if (person.part > 100) {
 						person.part = 100;
