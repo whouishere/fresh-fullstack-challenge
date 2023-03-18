@@ -25,7 +25,7 @@ const db: Person[] = [
 ];
 
 const DB_ERROR = {
-	EMPTY_FIELD: "Please fill all fields.", 
+	EMPTY_FIELD: "Please fill all fields properly.", 
 	DOUBLE_DATA: "This person is already registered. Please use another name."
 };
 

@@ -1,4 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
+import { asset, Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import PersonForm from "../islands/PersonForm.tsx";
 import PersonList from "../islands/PersonList.tsx";
@@ -39,6 +39,7 @@ export default function Home(props: PageProps<PersonProps>) {
 			<>
 				<Head>
 					<title>:(</title>
+					<link rel="stylesheet" href={asset("style.css")} />
 				</Head>
 
 				<div>
@@ -52,6 +53,7 @@ export default function Home(props: PageProps<PersonProps>) {
 		<>
 			<Head>
 				<title>Fullstack Challenge</title>
+				<link rel="stylesheet" href={asset("style.css")} />
 			</Head>
 
 			<PersonForm />

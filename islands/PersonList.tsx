@@ -3,8 +3,15 @@ import { Person } from "../routes/api/data.ts";
 export default function PersonList(props: { data: Person[] }) {
 	return (
 		<div>
-			<ul>
-				{props.data.map((person) => {
+			<table>
+				<tr>
+					<th>&nbsp;</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Participation</th>
+				</tr>
+
+				{props.data.map((person, index) => {
 					// keep the participation percentage, *per-cent*
 					if (person.part < 0 || isNaN(person.part) || person.part === null) {
 						person.part = 0;
@@ -13,13 +20,15 @@ export default function PersonList(props: { data: Person[] }) {
 					}
 
 					return (
-						<li>
-							<h3>{person.first} {person.last}</h3>
-							<strong>Participation:</strong> {person.part}%
-						</li>
+						<tr>
+							<td>{index}</td>
+							<td>{person.first}</td>
+							<td>{person.last}</td>
+							<td>{person.part}%</td>
+						</tr>
 					);
 				})}
-			</ul>
+			</table>
 		</div>
 	);
 }

@@ -1,0 +1,18 @@
+table {
+	border-collapse: collapse;
+}
+
+td, th {
+	padding: 1vh;
+	border: 1px solid gray;
+}
+
+/* keep the index column centered */
+td:first-child {
+	text-align: center;
+}
+
+/* keep the participation column centered */
+td:last-child {
+	text-align: center;
+}
