@@ -49,21 +49,43 @@ body {
 	margin-top: -1.5rem;
 }
 
-table {
-	border-collapse: collapse;
+.data {
+	text-align: center;
+	margin-top: 3rem;
 }
 
-td, th {
+.list {
+	display: block;
+	text-align: center;
+	margin-top: 3rem;
+}
+
+table {
+	border-collapse: collapse;
+	display: inline-block;
+}
+
+.table {
 	padding: 1vh;
 	border: 1px solid gray;
 }
 
-/* keep the index column centered */
-td:first-child {
+.table.first, .table.last {
+	text-align: left;
+}
+
+.table.first {
+	padding-right: 6rem;
+}
+
+.table.last {
+	padding-right: 10rem;
+}
+
+.table.index, .table.part {
 	text-align: center;
 }
 
-/* keep the participation column centered */
-td:last-child {
-	text-align: center;
+.table.index {
+	width: 1rem;
 }

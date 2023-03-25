@@ -2,13 +2,13 @@ import { Person } from "../routes/api/data.ts";
 
 export default function PersonList(props: { data: Person[] }) {
 	return (
-		<div>
+		<div class="list">
 			<table>
 				<tr>
-					<th>&nbsp;</th>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Participation</th>
+					<th class="table index">&nbsp;</th>
+					<th class="table first">First name</th>
+					<th class="table last" >Last name</th>
+					<th class="table part" >Participation</th>
 				</tr>
 
 				{props.data.map((person, index) => {
@@ -21,10 +21,10 @@ export default function PersonList(props: { data: Person[] }) {
 
 					return (
 						<tr>
-							<td>{index}</td>
-							<td>{person.first}</td>
-							<td>{person.last}</td>
-							<td>{person.part}%</td>
+							<td class="table index">{index}</td>
+							<td class="table first">{person.first}</td>
+							<td class="table last" >{person.last}</td>
+							<td class="table part" >{person.part}%</td>
 						</tr>
 					);
 				})}

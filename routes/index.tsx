@@ -61,8 +61,12 @@ export default function Home(props: PageProps<PersonProps>) {
 				{(props.data.error != null) ? (<div id="input-error"> {props.data.error} </div>) : ""}
 			</header>
 
-			
-			<PersonList data={props.data.data} />
+			<div class="data">
+				<h1>DATA</h1>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+
+				<PersonList data={props.data.data} />
+			</div>
 		</>
 	);
 }
