@@ -1,3 +1,54 @@
+:root {
+	--header-color: #00b8e2;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	position: static;
+	overflow: hidden;
+	display: block;
+	text-align: center;
+	background-color: var(--header-color);
+}
+
+.form {
+	display: inline-block;
+	line-height: 1.5rem;
+	padding: .5rem 1rem;
+	margin: 2.5rem .5rem;
+}
+
+.form.input {
+	width: 15%;
+}
+
+.form.button {
+	padding: .5rem 2.5rem;
+	font-weight: bold;
+	font-size: large;
+	text-transform: uppercase;
+	cursor: pointer;
+	background-color: var(--header-color);
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+	outline-color: transparent;
+	outline-style: solid;
+	box-shadow: 0 0 0 1px #fff;
+}
+
+#input-error {
+	color: red;
+	font-size: large;
+	font-weight: bold;
+	line-height: 1.5rem;
+	margin-top: -1.5rem;
+}
+
 table {
 	border-collapse: collapse;
 }

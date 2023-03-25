@@ -56,8 +56,11 @@ export default function Home(props: PageProps<PersonProps>) {
 				<link rel="stylesheet" href={asset("style.css")} />
 			</Head>
 
-			<PersonForm />
-			{(props.data.error != null) ? (<div style="color: red;"> {props.data.error} </div>) : ""}
+			<header class="header">
+				<PersonForm />
+				{(props.data.error != null) ? (<div id="input-error"> {props.data.error} </div>) : ""}
+			</header>
+
 			
 			<PersonList data={props.data.data} />
 		</>
