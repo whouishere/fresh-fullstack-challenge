@@ -7,8 +7,11 @@ type InputProps = {
 export default function InputField(props: InputProps) {
 	return (
 		<div>
-			{!props.label ? null : <label>{props.label}</label>}
-			<input type="text" name={props.name} id={props.name} value={props.value || ""} />
+			<input type="text" 
+			       name={props.name} 
+			       id={props.name} 
+						 value={props.value || ""} 
+						 placeholder={props.label || ""} />
 		</div>
 	);
 }
